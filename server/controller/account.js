@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import Account from '../model/account.js';
 import multer from 'multer';
+import { valPersNr } from '../middleware/validations.js';
 
 const router = Router();
 
@@ -15,12 +16,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-
-router.post('/', upload.single('docPhoto'), async (req, res) => {
+router.post('/', upload.single('docPhoto'), valPersNr, async (req, res) => {
     let data = req.body;
     data.docPhoto = req.file.filename;
     data.balance = 0;
-    // data.accNr = 'LT00000000002';
+    
 
     try {
         await Account.create(data);
