@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.use('/api/account', account);
 
-
+app.use('/docPhoto', express.static('uploads'));
 
 
 

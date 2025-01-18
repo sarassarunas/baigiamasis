@@ -74,4 +74,14 @@ router.post('/', upload.single('docPhoto'), valPersNr, async (req, res) => {
     }
 });
 
+router.get('/', async (req, res) => {
+    try {
+        res.json(await Account.find());
+    } catch {
+        res.status(500).json('Įvyko serverio klaida');
+    }
+});
+
+
+
 export default router;
