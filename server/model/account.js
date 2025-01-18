@@ -3,25 +3,25 @@ import { Schema, model } from 'mongoose';
 export default model('Accounts', new Schema({
     firstName: {
         type: String,
-        require: true
+        required: true
     },
     lastName: {
         type: String,
-        require: true
+        required: true
     },
     accNr: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     },
     persNr: {
         type:Number,
-        require: true,
+        required: true,
         unique: true
     },
     docPhoto: {
         type: String,
-        require: true
+        required: true
     },
     balance: {
         type: Number

@@ -16,11 +16,52 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+function random(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+}
+
 router.post('/', upload.single('docPhoto'), valPersNr, async (req, res) => {
     let data = req.body;
     data.docPhoto = req.file.filename;
     data.balance = 0;
+
+    let accNrs = [];
+        try {
+        
+            accNrs = await Account.find();
     
+        } catch {
+            
+            return res.status(500).json('Įvyko serverio klaida gaunant duomenys');
+        }
+
+    
+    
+    function newAccNr() {
+        
+        let country = 'LT';
+        let controllCode = '91'
+        let bankCode = "73305";
+        let accNr = '';
+        let fullAccNr = '';
+        for(let i = 1;i<=11;i++) {
+            accNr+=random(0,9);
+        }
+        fullAccNr = country+controllCode+bankCode+accNr;
+        
+        let index = accNrs.findIndex(el => el.accNr === fullAccNr);
+
+        if(index != -1)
+            return newAccNr();
+
+        return fullAccNr;
+        
+
+    }
+
+    data.accNr = newAccNr();
 
     try {
         await Account.create(data);
