@@ -4,6 +4,7 @@ import Account from "../components/account/Account.jsx";
 
 function Accounts() {
     const [data, setData] = useState([]);
+    const [alert, setAlert] = useState({});
 
     useEffect(() => {
         axios.get('/api/account')
@@ -27,6 +28,7 @@ function Accounts() {
                         docPhoto={acc.docPhoto}
                         balance={acc.balance}
                         id={acc._id}
+                        setAlert={setAlert}
                     />
                 ))}
             </div>

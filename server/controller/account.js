@@ -99,6 +99,15 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        await Account.findByIdAndDelete(req.params.id)
+        res.json("Vartotojo sąskaita sėkmingai ištrintas");
+    } catch {
+        res.status(500).json('Įvyko serverio klaida');
+    }
+});
+
 
 
 export default router;
