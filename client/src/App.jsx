@@ -6,6 +6,8 @@ import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Accounts from './pages/Accounts.jsx';
 import AddNewAcc from './pages/AddNewAcc.jsx';
+import AddBalance from './pages/AddBalance.jsx';
+import RemoveBalance from './pages/RemoveBalance.jsx';
 
 function App() {
   
@@ -19,6 +21,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/newAcc" element={<AddNewAcc />} />
           <Route path='/accounts' element={<Accounts />}/>
+          <Route path='/account/add/:id' element={<AddBalance />}/>
+          <Route path='/account/remove/:id' element={<RemoveBalance />}/>
         </Routes>
       </div>
     </BrowserRouter>

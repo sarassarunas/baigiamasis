@@ -26,6 +26,7 @@ function Accounts() {
                         persNr={acc.persNr}
                         docPhoto={acc.docPhoto}
                         balance={acc.balance}
+                        id={acc._id}
                     />
                 ))}
             </div>

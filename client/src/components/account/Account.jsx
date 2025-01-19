@@ -1,4 +1,5 @@
 import './Account.css';
+import { Link } from 'react-router-dom';
 
 function Account(props) {
     return(
@@ -31,7 +32,8 @@ function Account(props) {
                 </div>
                 <div className="col-12 col-md-4 border-start">
                     <div className="buttons my-2">
-                        <button className="btn btn-primary">1 button</button>
+                        <Link to={'/account/add/'+props.id}><button className="btn btn-warning">Prideti lėšas</button></Link>
+                        <Link to={'/account/remove/'+props.id}><button className="btn btn-warning">Atimti lėšas</button></Link>
                         <button className="btn btn-danger">Ištrinti</button>
                     </div>
                 </div>

@@ -82,6 +82,23 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+        res.json(await Account.findById(req.params.id));
+    } catch {
+        res.status(500).json('Įvyko serverio klaida');
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        await Account.findByIdAndUpdate(req.params.id, req.body)
+        res.json("Vartotojo lėšos sėkmingai atnaujintos");
+    } catch {
+        res.status(500).json('Įvyko serverio klaida');
+    }
+});
+
 
 
 export default router;
