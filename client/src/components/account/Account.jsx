@@ -4,15 +4,17 @@ import { useState } from 'react';
 import axios from 'axios';
 
 
-function Account(props, setAlert) {
+function Account( props ) {
 
     const [popUp, setPopUp] = useState(false);
     
 
-    function handleDelte(id) {
+    function handleDelete(e) {
+
+        const id = e.target.id;
         axios.delete('/api/account/'+id)
         .then(resp => {
-            setAlert({
+            props.setAlert({
                 message: resp.data,
                 status: 'success'
             });
@@ -23,18 +25,22 @@ function Account(props, setAlert) {
             // }, 3000);
         })
         // .then(()=>{window.location.reload();})
-        .catch(err => setAlert({
+        .catch(err => {
+            props.setAlert({
             message: err.response.data,
             status: 'danger'
-        }));
+        });
+            setPopUp(false);
+        }
+        );
     }
 
     return(
         <>
         {popUp?
             <div className='popUp'>
-                <h1>ar tikrai norite ištrinti sąskaitą?</h1>
-                <button >Taip</button>
+                <h1>ar tikrai norite ištrinti {props.firstName + ' ' + props.lastName} sąskaitą?</h1>
+                <button id={props.id} onClick={handleDelete}>Taip</button>
                 <button onClick={()=>{setPopUp(!popUp)}}>Ne</button>   
             </div>:
             <div className="row border border-start-0 border-end-0 mt-3">

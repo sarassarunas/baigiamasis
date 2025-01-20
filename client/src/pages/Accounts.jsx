@@ -12,11 +12,16 @@ function Accounts() {
             setData(resp.data)
         })
         .catch(err => console.log(err));
-    }, []);
+    }, [alert]);
     
     return (
         <>
             <h1>Visos vartotojų sąskaitos:</h1>
+            {alert.message&&
+            <div className="alert">
+                <p>{alert.message}</p>
+            </div>
+            }
             <div className="accList">
                 {data.map(acc=>(
                     <Account 

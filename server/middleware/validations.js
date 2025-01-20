@@ -16,3 +16,17 @@ export function valPersNr(req, res, next) {
     
     next();
 };
+
+export async function balance(req, res, next) {
+    
+    try {
+        console.log(req.params)
+        const data = await Account.findById(req.params.id);
+        console.log(data);
+    } catch {
+        res.status(500).json('Įvyko serverio klaida');
+    }
+    
+    
+    next();
+};

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import Account from '../model/account.js';
 import multer from 'multer';
-import { valPersNr } from '../middleware/validations.js';
+import { valPersNr, balance } from '../middleware/validations.js';
 
 const router = Router();
 
@@ -100,9 +100,19 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
+    
+    try {
+       let data = await Account.findById(req.params.id);
+       if(data.balance !== 0)
+        return res.status(400).json("Norint ištrinti sąskaitą, balansas turi būti 0!");
+    } catch {
+        return res.status(500).json('Įvyko serverio klaida');
+    }
+    
+
     try {
         await Account.findByIdAndDelete(req.params.id)
-        res.json("Vartotojo sąskaita sėkmingai ištrintas");
+        res.json("Vartotojo sąskaita sėkmingai ištrinta");
     } catch {
         res.status(500).json('Įvyko serverio klaida');
     }

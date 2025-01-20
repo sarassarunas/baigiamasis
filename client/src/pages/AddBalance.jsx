@@ -46,7 +46,18 @@ function AddBalance() {
     
     return (
         <>
-            <h1>Prideti pinigeli</h1>
+            <div className="row my-3 justify-content-center">
+                <div className="col-12 col-md-8">
+                    <div className="row">
+                        <div className="col-12 col-md-6">
+                            <button className="btn btn-warning" onClick={() => history.back()}>Grįžti į sąrašą</button>
+                        </div>
+                        <div className="col-12 col-md-6">
+                            <h1 className="">Prideti lėšas</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <SingleAccount
                 firstName={data.firstName}
                 lastName={data.lastName}

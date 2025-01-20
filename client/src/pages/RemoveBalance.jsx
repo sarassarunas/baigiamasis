@@ -49,7 +49,7 @@ function AddBalance() {
     
     return (
         <>
-            <h1>Prideti pinigeli</h1>
+            <button className="btn btn-warning" onClick={() => history.back()}>Grįžti į sąrašą</button><h1>Nuimti lėšas</h1>
             <SingleAccount
                 firstName={data.firstName}
                 lastName={data.lastName}
