@@ -12,9 +12,9 @@ function AddBalance() {
     useEffect(() => {
         axios.get('/api/account/' + id)
         .then(resp => setData(resp.data))
-            .catch(err => setAlert({
-                message: err.response.data,
-                status: 'danger'
+        .catch(err => setAlert({
+            message: err.response.statusText,
+            status: 'danger'
         }));
     }, [alert]);
 
@@ -30,15 +30,9 @@ function AddBalance() {
             setAlert({
                 message: resp.data,
                 status: 'success'
-            });
-            
-            // // Peradresavimo kūrimas
-            // setTimeout(() => {
-            //     navigate('/admin');
-            // }, 3000);
-        })
+            });})
         .catch(err => setAlert({
-            message: err.response.data,
+            message: err.response.statusText,
             status: 'danger'
         }));
 
@@ -47,12 +41,12 @@ function AddBalance() {
     return (
         <>
             <div className="row my-3 justify-content-center">
-                <div className="col-12 col-md-8">
+                <div className="col-12 col-md-8 ms-md-5">
                     <div className="row">
-                        <div className="col-12 col-md-6">
+                        <div className="col-12 col-md-4 align-content-center">
                             <button className="btn btn-warning" onClick={() => history.back()}>Grįžti į sąrašą</button>
                         </div>
-                        <div className="col-12 col-md-6">
+                        <div className="col-12 col-md-8 text-md-start">
                             <h1 className="">Prideti lėšas</h1>
                         </div>
                     </div>
@@ -73,7 +67,7 @@ function AddBalance() {
                     <label className="d-block">Suma kurią norite pridėti:</label>
                     <div className="input-group">
                         
-                        <input type="number" className="form-control" name="value" step="any" min="0"/>
+                        <input type="number" className="form-control" name="value" step="any" min="0" required/>
                         <button className="btn btn-primary">Pridėti</button>
                     </div>
 

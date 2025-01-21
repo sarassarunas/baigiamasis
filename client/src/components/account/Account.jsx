@@ -17,11 +17,6 @@ function Account( props ) {
                 message: resp.data,
                 status: 'success'
             });
-            // window.location.reload();
-            // // Peradresavimo kūrimas
-            // setTimeout(() => {
-            //     navigate('/admin');
-            // }, 3000);
             }).catch(err => {
                 props.setAlert({
                 message: err.response.data,
@@ -68,7 +63,7 @@ function Account( props ) {
                 <div className="col-12 col-md-4 border-start align-content-center">
                     <div className="buttons my-2">
                         <Link to={'/account/add/'+props.id}><button className="btn btn-warning mx-1">Prideti lėšas</button></Link>
-                        <Link to={'/account/remove/'+props.id}><button className="btn btn-warning mx-1">Atimti lėšas</button></Link>
+                        <Link to={'/account/remove/'+props.id}><button className="btn btn-warning mx-1">Nuimti lėšas</button></Link>
                         <button className="btn btn-danger mx-1" onClick={()=>{setPopUp(!popUp)}}>Ištrinti</button>
                     </div>
                 </div>

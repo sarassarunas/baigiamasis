@@ -36,15 +36,9 @@ function AddBalance() {
             setAlert({
                 message: resp.data,
                 status: 'success'
-            });
-            
-            // // Peradresavimo kūrimas
-            // setTimeout(() => {
-            //     navigate('/admin');
-            // }, 3000);
-        })
+            });})
         .catch(err => setAlert({
-            message: err.response.data,
+            message: err.response.statusText,
             status: 'danger'
         }));
 
@@ -52,7 +46,18 @@ function AddBalance() {
     
     return (
         <>
-            <button className="btn btn-warning" onClick={() => history.back()}>Grįžti į sąrašą</button><h1>Nuimti lėšas</h1>
+            <div className="row my-3 justify-content-center">
+                <div className="col-12 col-md-8 ms-md-5">
+                    <div className="row">
+                        <div className="col-12 col-md-4 align-content-center">
+                            <button className="btn btn-warning" onClick={() => history.back()}>Grįžti į sąrašą</button>
+                        </div>
+                        <div className="col-12 col-md-8 text-md-start">
+                            <h1 className="">Nuimti lėšas</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {alert.message&&
             <div className={"alert alert-" + alert.status}>
                 <p>{alert.message}</p>

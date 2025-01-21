@@ -23,8 +23,8 @@ function AddNewAcc() {
                     }, 3000);
             }).catch(err => {
                 setAlert({
-                message: err.response.data,
-                status: 'danger'
+                    message: err.response.data,
+                    status: 'danger'
             });
     })}
 
@@ -50,27 +50,27 @@ function AddNewAcc() {
                 <div className="row">
                     <div className="mt-2 col-12 col-md-6">
                         <label className="form-label text-start" htmlFor='name'>Vardas:</label>
-                        <input className="form-control" type="text" name="firstName" id='name'/>
+                        <input className="form-control" type="text" name="firstName" id='name' required/>
                     </div>
                     <div className="mt-2 col-12 col-md-6">
                         <label className="form-label" htmlFor='lastName'>Pavardė:</label>
-                        <input className="form-control" type="text" name="lastName" id='lastName'/>
+                        <input className="form-control" type="text" name="lastName" id='lastName' required/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="mt-2 col-12 col-md-6">
                         <label className="form-label" htmlFor='persNr'>Asmens kodas:</label>
-                        <input className="form-control" type="number" name="persNr" id='persNr'/>
+                        <input className="form-control" type="number" name="persNr" id='persNr' max='99999999999' min='10000000000' required/>
                     </div>
                     <div className="mt-2 col-12 col-md-6">
                         <label className="form-label" htmlFor='photo'>Id nuotrauka:</label>
-                        <input className="form-control" type="file" accept="image/jpeg" name="docPhoto" id='photo'/>
+                        <input className="form-control" type="file" accept="image/jpeg" name="docPhoto" id='photo' required/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="mt-2 col-12 col-md-6">
-                        <label className="form-label" htmlFor='accNr'>Asmens kodas:</label>
-                        <input className="form-control" defaultValue={fullAccNr} type="text" name="accNr" id='accNr'/>
+                        <label className="form-label" htmlFor='accNr'>Sąskaitos nr.:</label>
+                        <input className="form-control" defaultValue={fullAccNr} type="text" name="accNr" id='accNr' required/>
                     </div>
                     
                 </div>

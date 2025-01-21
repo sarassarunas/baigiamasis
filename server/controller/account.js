@@ -104,7 +104,7 @@ router.delete('/:id', async (req, res) => {
     try {
        let data = await Account.findById(req.params.id);
        if(data.balance !== 0)
-        return res.status(400).json("Norint ištrinti sąskaitą, balansas turi būti 0!");
+        return res.status(400).json("Norint ištrinti sąskaitą, joje negali būti pinigų!");
     } catch {
         return res.status(500).json('Įvyko serverio klaida');
     }
