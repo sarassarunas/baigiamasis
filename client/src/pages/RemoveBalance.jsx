@@ -24,7 +24,10 @@ function AddBalance() {
         let currBalance = +data.balance;
         let newBalance = currBalance-(+fieldData.value);
         if(newBalance<0)
-            return console.log(`per mazas saskaitos likutis`);
+            return setAlert({
+                message: `Lėšų kiekis yra nepakankamas`,
+                status: 'danger'
+            });
                 
         
 
@@ -50,6 +53,11 @@ function AddBalance() {
     return (
         <>
             <button className="btn btn-warning" onClick={() => history.back()}>Grįžti į sąrašą</button><h1>Nuimti lėšas</h1>
+            {alert.message&&
+            <div className={"alert alert-" + alert.status}>
+                <p>{alert.message}</p>
+            </div>
+            }
             <SingleAccount
                 firstName={data.firstName}
                 lastName={data.lastName}

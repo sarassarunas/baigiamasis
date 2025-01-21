@@ -11,22 +11,9 @@ export function valPersNr(req, res, next) {
     let year = req.body.persNr.slice(1,3);
     let month = req.body.persNr.slice(3,5);
     let day = req.body.persNr.slice(5,7);
-    if(+month>12 || +day>31)
+    
+    if(+month>12 || +day>31 || req.body.persNr.length!==11)
         return res.status(422).json('Netinkamas asmens kodas');
-    
-    next();
-};
-
-export async function balance(req, res, next) {
-    
-    try {
-        console.log(req.params)
-        const data = await Account.findById(req.params.id);
-        console.log(data);
-    } catch {
-        res.status(500).json('Įvyko serverio klaida');
-    }
-    
     
     next();
 };

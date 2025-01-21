@@ -18,10 +18,15 @@ function Accounts() {
         <>
             <h1>Visos vartotojų sąskaitos:</h1>
             {alert.message&&
-            <div className="alert">
+            <div className={"alert alert-" + alert.status}>
                 <p>{alert.message}</p>
             </div>
             }
+            {!data[0]?
+            <div className='alert alert-warning'>
+                <p>Nėra jokių sąskaitų</p>
+            </div>
+            :
             <div className="accList">
                 {data.map(acc=>(
                     <Account 
@@ -37,6 +42,7 @@ function Accounts() {
                     />
                 ))}
             </div>
+            }   
         </>
     )
 }

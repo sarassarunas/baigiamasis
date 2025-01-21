@@ -58,6 +58,11 @@ function AddBalance() {
                     </div>
                 </div>
             </div>
+            {alert.message&&
+            <div className={"alert alert-" + alert.status}>
+                <p>{alert.message}</p>
+            </div>
+            }
             <SingleAccount
                 firstName={data.firstName}
                 lastName={data.lastName}

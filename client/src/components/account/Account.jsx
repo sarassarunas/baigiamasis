@@ -12,8 +12,7 @@ function Account( props ) {
     function handleDelete(e) {
 
         const id = e.target.id;
-        axios.delete('/api/account/'+id)
-        .then(resp => {
+        axios.delete('/api/account/'+id).then(resp => {
             props.setAlert({
                 message: resp.data,
                 status: 'success'
@@ -23,25 +22,22 @@ function Account( props ) {
             // setTimeout(() => {
             //     navigate('/admin');
             // }, 3000);
-        })
-        // .then(()=>{window.location.reload();})
-        .catch(err => {
-            props.setAlert({
-            message: err.response.data,
-            status: 'danger'
-        });
-            setPopUp(false);
-        }
-        );
+            }).catch(err => {
+                props.setAlert({
+                message: err.response.data,
+                status: 'danger'
+            });
+                setPopUp(false);
+            });
     }
 
     return(
         <>
         {popUp?
             <div className='popUp'>
-                <h1>ar tikrai norite ištrinti {props.firstName + ' ' + props.lastName} sąskaitą?</h1>
-                <button id={props.id} onClick={handleDelete}>Taip</button>
-                <button onClick={()=>{setPopUp(!popUp)}}>Ne</button>   
+                <h3 className='my-5'>Ar tikrai norite ištrinti {props.firstName + ' ' + props.lastName} sąskaitą?</h3>
+                <button className='btn btn-danger mx-3' id={props.id} onClick={handleDelete}>Taip</button>
+                <button className='btn btn-success mx-3' onClick={()=>{setPopUp(!popUp)}}>Ne</button>   
             </div>:
             <div className="row border border-start-0 border-end-0 mt-3">
                 <div className="col-12 col-md-8 my-2">
@@ -64,16 +60,16 @@ function Account( props ) {
                         <label className="d-block">Sąskaitos balansas:</label>
                         <span className="d-block">{props.balance + ' €'}</span>
                         </div>
-                        <div className="photo col-12 col-md-4 ">
+                        <div className="photo col-12 col-md-4">
                             <img src={"/docPhoto/" + props.docPhoto} alt="" />
                         </div>
                     </div>
                 </div>
-                <div className="col-12 col-md-4 border-start">
+                <div className="col-12 col-md-4 border-start align-content-center">
                     <div className="buttons my-2">
-                        <Link to={'/account/add/'+props.id}><button className="btn btn-warning">Prideti lėšas</button></Link>
-                        <Link to={'/account/remove/'+props.id}><button className="btn btn-warning">Atimti lėšas</button></Link>
-                        <button className="btn btn-danger" onClick={()=>{setPopUp(!popUp)}}>Ištrinti</button>
+                        <Link to={'/account/add/'+props.id}><button className="btn btn-warning mx-1">Prideti lėšas</button></Link>
+                        <Link to={'/account/remove/'+props.id}><button className="btn btn-warning mx-1">Atimti lėšas</button></Link>
+                        <button className="btn btn-danger mx-1" onClick={()=>{setPopUp(!popUp)}}>Ištrinti</button>
                     </div>
                 </div>
             </div>
