@@ -5,18 +5,28 @@ import Account from "../components/account/Account.jsx";
 function Accounts() {
     const [data, setData] = useState([]);
     const [alert, setAlert] = useState({});
+    const [fatalError, setFatalError] = useState({});
 
     useEffect(() => {
         axios.get('/api/account')
         .then(resp => {
             setData(resp.data)
         })
-        .catch(err => console.log(err));
+        .catch(err => 
+            setFatalError({
+                message: err.response.data?err.response.data:'nepavyko susisiekti su serveriu',
+                status: 'danger'
+            })
+            );
     }, [alert]);
-    
+    //
     return (
         <>
             <h1>Visos vartotojų sąskaitos:</h1>
+            {fatalError.message&&
+            <div className={"alert alert-" + fatalError.status}>
+                <p>{fatalError.message}</p>
+            </div>}
             {alert.message&&
             <div className={"alert alert-" + alert.status}>
                 <p>{alert.message}</p>

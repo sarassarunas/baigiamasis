@@ -1,29 +1,27 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import multer from 'multer';
-import account from './controller/account.js'
+import account from './controller/account.js';
+import admin from './controller/admin.js';
+import session from 'express-session';
 
 const app = express();
+
+app.set('trust proxy', 1) 
+app.use(session({
+  secret: 'pats saugiausias bankas',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
 app.use(express.json());
-
-// const storage = multer.diskStorage({
-//     destination: function (req, file, next) {
-//         next(null, './uploads');
-//     },
-//     filename: function (req, file, next) { 
-//         next(null, Date.now() + '.jpg');
-//     }
-// });
-
-// const upload = multer({ storage: storage });
 
 app.use('/api/account', account);
 
+app.use('/api/admin', admin);
+
 app.use('/docPhoto', express.static('uploads'));
-
-
-
-
 
 try {
     await mongoose.connect('mongodb://127.0.0.1/vBank');  

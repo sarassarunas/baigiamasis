@@ -23,9 +23,10 @@ function AddNewAcc() {
                     }, 3000);
             }).catch(err => {
                 setAlert({
-                    message: err.response.data,
+                    message: err.response.data?err.response.data:'nepavyko susisiekti su serveriu',
                     status: 'danger'
             });
+            console.log('veikia')
     })}
 
     let country = 'LT';

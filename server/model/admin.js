@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-export default model('Accounts', new Schema({
+export default model('Admins', new Schema({
     firstName: {
         type: String,
         required: true
@@ -9,22 +9,13 @@ export default model('Accounts', new Schema({
         type: String,
         required: true
     },
-    accNr: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    persNr: {
-        type:Number,
-        required: true,
-        unique: true
-    },
-    docPhoto: {
+    email: {
         type: String,
         required: true
     },
-    balance: {
-        type: Number
+    password: {
+        type: String,
+        required: true
     },
     createdAt: {
         type: Date,
