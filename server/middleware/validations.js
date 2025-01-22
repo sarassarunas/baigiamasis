@@ -38,6 +38,8 @@ export function valPersNr(req, res, next) {
             return res.status(422).json('Netinkamas asmens kodas');
         }
     }
+    if(persNr.slice(3,5)>12 || persNr.slice(5,7)>31)
+        return res.status(422).json('Netinkamas asmens kodas');
     next();
 };
 
