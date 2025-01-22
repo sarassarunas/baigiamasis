@@ -26,7 +26,7 @@ function AddNewAcc() {
                     message: err.response.data?err.response.data:'nepavyko susisiekti su serveriu',
                     status: 'danger'
             });
-            console.log('veikia')
+            
     })}
 
     let country = 'LT';

@@ -40,3 +40,10 @@ export function valPersNr(req, res, next) {
     }
     next();
 };
+
+export function accNrVal(req, res, next) {
+    const accNr = req.body.accNr;
+    if(accNr.length!==20 || accNr.slice(0,9)!=='LT9173305')
+        return res.status(422).json('Netinkamas sąskaitos numeris');
+    next();
+};

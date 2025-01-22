@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import Account from '../model/account.js';
 import multer from 'multer';
-import { valPersNr, auth } from '../middleware/validations.js';
+import { valPersNr, auth, accNrVal } from '../middleware/validations.js';
 
 const router = Router();
 
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/', upload.single('docPhoto'), auth, valPersNr, async (req, res) => {
+router.post('/', upload.single('docPhoto'), auth, valPersNr, accNrVal, async (req, res) => {
     let data = req.body;
     data.docPhoto = req.file.filename;
     data.balance = 0;
